@@ -1,0 +1,18 @@
+version: "2.2"
+services:
+  aplikasi:
+#    build: .
+    image: babay15/catalog
+    ports:
+      - "5000:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbserver/catalogdb
+    depends_on:
+    - dbserver
+  dbserver:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: catalogdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
